@@ -3,3 +3,7 @@
 ################################################################################
 
 /OdeToFood/OdeToFood/bin/Debug/netcoreapp3.1
+/OdeToFood/OdeToFood/obj
+*.user
+/OdeToFood/OdeToFood/Properties
+/OdeToFood/.vs/OdeToFood
