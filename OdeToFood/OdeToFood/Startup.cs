@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OdeToFood.Core;
+
+using OdeToFood.Data;
 
 namespace OdeToFood
 {
@@ -24,6 +27,8 @@ namespace OdeToFood
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
+            //services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.ve)
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
