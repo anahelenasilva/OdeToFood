@@ -17,6 +17,7 @@ namespace OdeToFood
 
         [BindProperty] //only with post op
         public Restaurant Restaurant { get; set; }
+
         public IEnumerable<SelectListItem> Cuisines { get; set; }
 
         public EditModel(IRestaurantData restaurantData, IHtmlHelper htmlHelper)
@@ -25,12 +26,22 @@ namespace OdeToFood
             this.htmlHelper = htmlHelper;
         }
 
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet(int? id)
         {
-            Restaurant = RestaurantData.GetById(id);
+            if (id != null)
+            {
+                Restaurant = RestaurantData.GetById(id.Value);
 
-            if (Restaurant == null)
-                return RedirectToPage("./NotFound");
+                if (Restaurant == null)
+                    return RedirectToPage("./NotFound");
+            }
+            else
+            {
+                Restaurant = new Restaurant
+                {
+                    Cuisine = CuisineType.None
+                };
+            }
 
             Cuisines = htmlHelper.GetEnumSelectList<CuisineType>();
 
@@ -39,9 +50,23 @@ namespace OdeToFood
 
         public IActionResult OnPost()
         {
-            Restaurant = RestaurantData.Update(Restaurant);
+            if (!ModelState.IsValid)
+            {
+                Cuisines = htmlHelper.GetEnumSelectList<CuisineType>();
+                return Page();
+            }
+
+            if (Restaurant.Id == 0)
+                RestaurantData.Add(Restaurant);
+            else
+                RestaurantData.Update(Restaurant);
+
             RestaurantData.Commit();
-            return Page();
+
+            TempData["Message"] = "Restaurant saved!";
+            //only shows on the next request
+
+            return RedirectToPage("./Detail", new { id = Restaurant.Id });
         }
     }
 }

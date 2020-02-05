@@ -8,8 +8,13 @@ namespace OdeToFood.Data
     public interface IRestaurantData
     {
         IEnumerable<Restaurant> GetRestaurantsByName(string name);
+
         Restaurant GetById(int id);
+
         Restaurant Update(Restaurant restaurant);
+
+        Restaurant Add(Restaurant newRestaurant);
+
         int Commit();
     }
 
@@ -38,6 +43,14 @@ namespace OdeToFood.Data
                     where string.IsNullOrEmpty(name) || r.Name.StartsWith(name)
                     orderby r.Name
                     select r).ToList();
+        }
+
+        public Restaurant Add(Restaurant newRestaurant)
+        {
+            restaurants.Add(newRestaurant);
+            newRestaurant.Id = restaurants.Max(m => m.Id) + 1;
+
+            return newRestaurant;
         }
 
         public Restaurant Update(Restaurant updatedRestaurant)
