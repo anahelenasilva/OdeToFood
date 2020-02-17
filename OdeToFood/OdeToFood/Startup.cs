@@ -32,7 +32,7 @@ namespace OdeToFood
             {
                 opt.UseSqlServer(Configuration.GetConnectionString("OdeToFoodDb"));
             });
-            services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
+            services.AddScoped<IRestaurantData, SqlRestaurantData>();
             //services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.ve)
         }
 
