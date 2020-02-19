@@ -1,0 +1,19 @@
+﻿@page "{id}"
+@model OdeToFood.DeleteModel
+@{
+}
+
+<h2>Delete!</h2>
+
+<div class="alert alert-danger">
+    Are you sure you want to delete?
+</div>
+
+<form method="post">
+
+    <button type="submit" name="delete" class="btn btn-danger" value="">
+        Yes
+    </button>
+
+    <a asp-page="List" class="btn btn-primary">Cancel</a>
+</form>

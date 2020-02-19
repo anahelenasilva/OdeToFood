@@ -29,12 +29,16 @@
             <td>@restaurant.Cuisine</td>
             <td>
                 <a class="btn bt-lg"
-                   asp-page="./Detail" asp-route-id="@restaurant.Id">
+                   asp-page="./Detail" asp-route-id="@restaurant.RestaurantId">
                     <i class="fa fa-search-plus"></i>
                 </a>
                 <a class="btn bt-lg"
-                   asp-page="./Edit" asp-route-id="@restaurant.Id">
+                   asp-page="./Edit" asp-route-id="@restaurant.RestaurantId">
                     <i class="fa fa-pencil-alt"></i>
+                </a>
+                <a class="btn bt-lg"
+                   asp-page="./Delete" asp-route-id="@restaurant.RestaurantId">
+                    <i class="fa fa-trash"></i>
                 </a>
             </td>
         </tr>

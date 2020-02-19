@@ -12,15 +12,15 @@ namespace OdeToFood.Data
         {
             restaurants = new List<Restaurant>
             {
-                new Restaurant { Id = 1, Name = "Scott's Pizza", Location = "Maryland", Cuisine = CuisineType.Italian },
-                new Restaurant { Id = 2, Name = "Cinnamon Club", Location = "London", Cuisine = CuisineType.Indian },
-                new Restaurant { Id = 3, Name = "La Costa", Location = "California", Cuisine = CuisineType.Mexican },
+                new Restaurant { RestaurantId = 1, Name = "Scott's Pizza", Location = "Maryland", Cuisine = CuisineType.Italian },
+                new Restaurant { RestaurantId = 2, Name = "Cinnamon Club", Location = "London", Cuisine = CuisineType.Indian },
+                new Restaurant { RestaurantId = 3, Name = "La Costa", Location = "California", Cuisine = CuisineType.Mexican },
             };
         }
 
         public Restaurant GetById(int id)
         {
-            return restaurants.SingleOrDefault(f => f.Id == id);
+            return restaurants.SingleOrDefault(f => f.RestaurantId == id);
         }
 
         public IEnumerable<Restaurant> GetRestaurantsByName(string name = null)
@@ -34,14 +34,14 @@ namespace OdeToFood.Data
         public Restaurant Add(Restaurant newRestaurant)
         {
             restaurants.Add(newRestaurant);
-            newRestaurant.Id = restaurants.Max(m => m.Id) + 1;
+            newRestaurant.RestaurantId = restaurants.Max(m => m.RestaurantId) + 1;
 
             return newRestaurant;
         }
 
         public Restaurant Update(Restaurant updatedRestaurant)
         {
-            var restaurant = restaurants.SingleOrDefault(f => f.Id == updatedRestaurant.Id);
+            var restaurant = restaurants.SingleOrDefault(f => f.RestaurantId == updatedRestaurant.RestaurantId);
             if (restaurant != null)
             {
                 restaurant.Name = updatedRestaurant.Name;
@@ -59,7 +59,7 @@ namespace OdeToFood.Data
 
         public int Delete(int id)
         {
-            var restaurant = restaurants.FirstOrDefault(f => f.Id == id);
+            var restaurant = restaurants.FirstOrDefault(f => f.RestaurantId == id);
             if (restaurant != null)
             {
                 restaurants.Remove(restaurant);

@@ -56,7 +56,7 @@ namespace OdeToFood
                 return Page();
             }
 
-            if (Restaurant.Id == 0)
+            if (Restaurant.RestaurantId == 0)
                 RestaurantData.Add(Restaurant);
             else
                 RestaurantData.Update(Restaurant);
@@ -66,7 +66,7 @@ namespace OdeToFood
             TempData["Message"] = "Restaurant saved!";
             //only shows on the next request
 
-            return RedirectToPage("./Detail", new { id = Restaurant.Id });
+            return RedirectToPage("./Detail", new { id = Restaurant.RestaurantId });
         }
     }
 }

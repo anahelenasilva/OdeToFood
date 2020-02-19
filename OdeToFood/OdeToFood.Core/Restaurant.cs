@@ -4,7 +4,7 @@ namespace OdeToFood.Core
 {
     public class Restaurant
     {
-        public int Id { get; set; }
+        public int RestaurantId { get; set; }
 
         [Required, StringLength(80)]
         public string Name { get; set; }
