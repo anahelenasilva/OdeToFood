@@ -42,6 +42,11 @@ namespace OdeToFood.Data
             return context.Restaurant.Find(id);
         }
 
+        public int GetCountOfRestaurants()
+        {
+            return context.Restaurant.AsNoTracking().Count();
+        }
+
         public IEnumerable<Restaurant> GetRestaurantsByName(string name)
         {
             var query = from r in context.Restaurant

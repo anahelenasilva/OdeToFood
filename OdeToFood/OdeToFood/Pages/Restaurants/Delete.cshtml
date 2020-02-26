@@ -1,12 +1,13 @@
 ﻿@page "{id}"
 @model OdeToFood.DeleteModel
 @{
+    ViewData["Title"] = "Delete";
 }
 
 <h2>Delete!</h2>
 
 <div class="alert alert-danger">
-    Are you sure you want to delete?
+    Are you sure you want to delete @Model.Restaurant.Name?
 </div>
 
 <form method="post">
