@@ -28,10 +28,13 @@ namespace OdeToFood
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddControllers();
+
             services.AddDbContextPool<Context>(opt =>
             {
                 opt.UseSqlServer(Configuration.GetConnectionString("OdeToFoodDb"));
             });
+
             services.AddScoped<IRestaurantData, SqlRestaurantData>();
             //services.AddMvc().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.ve)
         }
@@ -51,7 +54,9 @@ namespace OdeToFood
             }
 
             app.UseHttpsRedirection();
+            app.UseNodeModules();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseRouting();
 
@@ -60,6 +65,7 @@ namespace OdeToFood
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }
